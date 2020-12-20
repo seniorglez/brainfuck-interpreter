@@ -28,7 +28,7 @@ public class DataCell
     {
         if(value == MAX_VALUE)
         {
-            this.value = 0;
+            this.value = MIN_VALUE;
         } else {
             this.value++;
         }
@@ -38,7 +38,7 @@ public class DataCell
     {
         if(value == MIN_VALUE)
         {
-            this.value = 255;
+            this.value = MAX_VALUE;
         } else {
             this.value--;
         }

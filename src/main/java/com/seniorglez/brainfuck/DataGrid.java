@@ -13,6 +13,15 @@ public class DataGrid
     {
         this.dataArray = new DataCell[7500];
         this.pointer = 0;
+        initDataArray(dataArray);
+    }
+
+    private void initDataArray(DataCell[] dataArray)
+    {
+        for(int i = 0; i < dataArray.length; i++)
+        {
+            dataArray[i] = new DataCell();
+        }
     }
 
     public void incrementPoiner() 
@@ -25,7 +34,7 @@ public class DataGrid
         }
     }
 
-    public void decrementPoiner() 
+    public void decrementPoiner()
     {
         if(pointer == 0)
         {
@@ -35,12 +44,12 @@ public class DataGrid
         }
     }
 
-    public incrementValue()
+    public void incrementValue()
     {
         this.dataArray[pointer].incrementValue();
     }
 
-    public decrementValue()
+    public void decrementValue()
     {
         this.dataArray[pointer].decrementValue();
     }
@@ -50,7 +59,7 @@ public class DataGrid
         return this.dataArray[pointer].getValue();
     }
 
-    public void setCurrentValue(char mander)
+    public void setCurrentValue(char mander) throws UnsupportedValueException
     {
         this.dataArray[pointer].setValue(mander);
     }
