@@ -18,17 +18,23 @@ public class BrainfuckInterpreter
 {
         private DataGrid dataGrid;
         private LinkedList queue;
-        private int position = -1;
+        private int position;
 
     public BrainfuckInterpreter(DataGrid dataGrid, LinkedList queue)
     {
         this.dataGrid = dataGrid;
         this.queue = queue;
+        position = -1;
     }
 
     public void run()
     {
         while(nextChar()) consumeChar(getCurrentChar(), dataGrid);
+    }
+
+    public void reset() {
+        this.position = -1;
+        run();
     }
 
     public static void enqueue(InputStream inputStream, LinkedList queue)
@@ -49,14 +55,8 @@ public class BrainfuckInterpreter
         queue.addAll(intStream.boxed().collect(Collectors.toList())); //boxed turns the int Stream into a Integer Stream which is collected into a List of Objets
     }
 
-
-
     private void consumeChar(int c, DataGrid dataGrid) {
-        consumeChar(c,dataGrid, false);
-    }
-
-    private void consumeChar(int c, DataGrid dataGrid, boolean loop) {
-        
+        System.out.println("Consuming " + (char)c);
         switch(c) {
             case 43://+
                 dataGrid.incrementValue();
@@ -74,35 +74,34 @@ public class BrainfuckInterpreter
                 dataGrid.decrementPoiner();
                 break;
             case 62://>
-                dataGrid.incrementValue();
+                dataGrid.incrementPoiner();
                 break;
             case 91://[
+                System.out.println("loop");//test
                 //recursivity here
                 if(dataGrid.getCurrentValue() != 0) {
                     LinkedList queue= new LinkedList();
-                    while (getCurrentChar()!= 93) queue.push(Integer.valueOf(getCurrentChar()));
+                    while (lookFor(93)!= -1) queue.add(Integer.valueOf(getCurrentChar()));
                     BrainfuckInterpreter brainfuckInterpreter = new BrainfuckInterpreter(dataGrid,queue);
                     while (dataGrid.getCurrentValue() != 0) {
-                        brainfuckInterpreter.run();
                         brainfuckInterpreter.reset();
                     }
+                } else {
+                    while (lookFor(93)!= -1);
+                    nextChar();
                 }
                 break;
             case 93://]
-                System.out.println("Fin bucle");
+                System.out.println("Unexpected value");
                 break;
             default:
                 System.out.println("Wtf is this > " + (char)c);
         }
     }
 
-    private void reset() {
-        this.position = -1;
-    }
-
     private boolean nextChar() 
     {
-        if(++position < queue.size()) {
+        if(++position < this.queue.size()) {
             return true;
         } 
         return false;
@@ -115,8 +114,8 @@ public class BrainfuckInterpreter
 
     private int lookFor(int charToConsume) 
     {
-        int ch = getCurrentChar();
         nextChar();
+        int ch = getCurrentChar();
         if ( charToConsume == ch) {
             return -1;
         } 

@@ -14,9 +14,12 @@ public class BrainfuckInterpreterTest
 	@DisplayName("shouldReturn2")
 	void smokeTestA() {
 		DataGrid dataGrid = new DataGrid();
-        LinkedList queue= new LinkedList();
-		BrainfuckInterpreter.enqueue("++++++++++++++++++++++++++++++++++++++++++++++++++.", queue);//This should print 2
+		LinkedList queue= new LinkedList();
+		//BrainfuckInterpreter.enqueue("++++++++++++++++++++++++++++++++++++++++++++++++++[-.]", queue);//This should print 2
+		BrainfuckInterpreter.enqueue("++++[>++++++++++<-]>.", queue);//Should return (
+		//BrainfuckInterpreter.enqueue("++++++++++++++++++++++++++++++++++++++++++++++++++.", queue);//This should print 2
 		//BrainfuckInterpreter.enqueue("++++++++++[->+++++<].", queue);//This should print 2
+		//BrainfuckInterpreter.enqueue("[-]", queue);
         BrainfuckInterpreter brainfuckInterpreter = new BrainfuckInterpreter(dataGrid, queue);
         brainfuckInterpreter.run();
 	}
