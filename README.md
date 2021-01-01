@@ -5,11 +5,40 @@ users can run it without installing the JVM.
 
 There is still a lot of work left until it is finished but it is already capable of executing code that is provided as a parameter.
 
+## Prerequisites
 
+All you need to build an executable is java and maven.
+
+## Build it
+
+Invoke the following maven goal:
+
+```bash
+    mvn package
+```
+
+This will generate an executable called "com.seniorglez.brainfuck.brainfuckinterpreter" under the target directory.
+
+## Run it
+
+Right now you can only pass code as an argument.
+
+```bash
+    ./com.seniorglez.brainfuck.brainfuckinterpreter ">+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.[-]>++++++++[<++++>-] <.>+++++++++++[<++++++++>-]<-.--------.+++.------.--------.[-]>++++++++[<++++>- ]<+.[-]++++++++++."
+```
+
+This will return: Hello world!
 
 ## Contributing
 
 Feel free to fork it and made pull request if something can be improved.
+
+## Built With
+
+* [Maven](https://maven.apache.org/) - The build automation tool
+* [GraalVM](https://www.graalvm.org/) - The poliglot JVM
+
+## Contributing
 
 ## Authors
 
