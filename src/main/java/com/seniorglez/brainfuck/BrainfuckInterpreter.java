@@ -1,6 +1,8 @@
 package com.seniorglez.brainfuck;
 
 import java.io.InputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -113,7 +115,15 @@ public class BrainfuckInterpreter
     {
         DataGrid dataGrid = new DataGrid();
         LinkedList queue= new LinkedList();
-        enqueue(args[0], queue);
+        if(args[0].endsWith(".bf") | args[0].endsWith(".b")) {
+            File code = new File(args[0]);
+            try(InputStream inputStream = new FileInputStream(code);){
+                enqueue(inputStream, queue);
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+            
+        } else enqueue(args[0], queue);
         BrainfuckInterpreter brainfuckInterpreter = new BrainfuckInterpreter(dataGrid, queue);
         try{ brainfuckInterpreter.run();} catch(UnexpectedCharacterException e) { e.printStackTrace(); }
     }
