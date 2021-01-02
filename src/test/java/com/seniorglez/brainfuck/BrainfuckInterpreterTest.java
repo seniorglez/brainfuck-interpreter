@@ -1,8 +1,12 @@
 package com.seniorglez.brainfuck;
 
 import java.util.LinkedList;
+
+import com.seniorglez.brainfuck.exceptions.UnexpectedCharacterException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.InputStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 /**
@@ -11,15 +15,12 @@ import org.junit.jupiter.api.Test;
 public class BrainfuckInterpreterTest
 {
 	@Test
-	@DisplayName("shouldReturn2")
-	void smokeTestA() {
+	@DisplayName("shouldPrintHelloWorld")
+	void smokeTest() throws UnexpectedCharacterException {
 		DataGrid dataGrid = new DataGrid();
 		LinkedList queue= new LinkedList();
-		//BrainfuckInterpreter.enqueue("++++++++++++++++++++++++++++++++++++++++++++++++++[-.]", queue);//This should print 2
-		BrainfuckInterpreter.enqueue(">+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.[-]>++++++++[<++++>-] <.>+++++++++++[<++++++++>-]<-.--------.+++.------.--------.[-]>++++++++[<++++>- ]<+.[-]++++++++++.", queue);//Should return Hello world!
-		//BrainfuckInterpreter.enqueue("++++++++++++++++++++++++++++++++++++++++++++++++++.", queue);//This should print 2
-		//BrainfuckInterpreter.enqueue("++++++++++[->+++++<].", queue);//This should print 2
-		BrainfuckInterpreter.enqueue("+++++[>+++++++++++<-]>.", queue);//Print 2
+		InputStream input = this.getClass().getResourceAsStream("helloworld.bf");
+		BrainfuckInterpreter.enqueue(input, queue);//Should return Hello world!
         BrainfuckInterpreter brainfuckInterpreter = new BrainfuckInterpreter(dataGrid, queue);
         brainfuckInterpreter.run();
 	}

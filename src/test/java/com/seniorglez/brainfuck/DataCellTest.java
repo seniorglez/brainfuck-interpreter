@@ -1,6 +1,6 @@
 package com.seniorglez.brainfuck;
 
-
+import com.seniorglez.brainfuck.exceptions.*;
 import org.junit.jupiter.api.Assertions;
 
 import org.junit.jupiter.api.DisplayName;
