@@ -2,6 +2,12 @@ package com.seniorglez.brainfuck;
 
 import com.seniorglez.brainfuck.exceptions.UnsupportedValueException;
 
+/**
+ * The DataCell class wraps a numeric value between 0 and 255. An object of type DataCell contains a single field whose type is int 
+ * but it only take values between 0 and 255.
+ * 
+ * In addition, this class provides several methods for getting and setting the value as a char. It will also check that the numerical value of the char is between 0 and 255
+ */
 public class DataCell
 {
 

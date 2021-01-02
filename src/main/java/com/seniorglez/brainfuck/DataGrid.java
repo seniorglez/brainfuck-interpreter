@@ -3,8 +3,8 @@ package com.seniorglez.brainfuck;
 import com.seniorglez.brainfuck.exceptions.UnsupportedValueException;
 
 /**
- * 
- *
+ * DataCell class wraps an Array of DataCell instances and a int witch represents a position of the Array.It only allows access/modifie its values through 
+ * its public methods, which represent the instructions of the Brainfuck language specification.
  */
 public class DataGrid
 {
