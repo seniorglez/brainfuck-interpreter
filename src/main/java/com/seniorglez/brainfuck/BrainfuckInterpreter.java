@@ -9,10 +9,10 @@ import java.util.Queue;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import com.seniorglez.brainfuck.exceptions.UnexpectedCharacterException;
 
 /**
- * Hello world!
- *
+ * This class provides the method run which execute the queued Brainfuck code.
  */
 public class BrainfuckInterpreter
 {
@@ -27,12 +27,12 @@ public class BrainfuckInterpreter
         position = -1;
     }
 
-    public void run()
+    public void run() throws UnexpectedCharacterException
     {
         while(nextChar()) consumeChar(getCurrentChar(), dataGrid);
     }
 
-    public void reset() {
+    public void reset() throws UnexpectedCharacterException {
         this.position = -1;
         run();
     }
@@ -55,8 +55,7 @@ public class BrainfuckInterpreter
         queue.addAll(intStream.boxed().collect(Collectors.toList())); //boxed turns the int Stream into a Integer Stream which is collected into a List of Objets
     }
 
-    private void consumeChar(int c, DataGrid dataGrid) {
-        System.out.println("Consuming " + (char)c);
+    private void consumeChar(int c, DataGrid dataGrid) throws UnexpectedCharacterException {
         switch(c) {
             case 43://+
                 dataGrid.incrementValue();
@@ -68,7 +67,7 @@ public class BrainfuckInterpreter
                 dataGrid.decrementValue();
                 break;
             case 46://.
-                System.out.println(dataGrid.getCurrentValue());
+                System.out.print(dataGrid.getCurrentValue());
                 break;
             case 60://<
                 dataGrid.decrementPoiner();
@@ -77,25 +76,13 @@ public class BrainfuckInterpreter
                 dataGrid.incrementPoiner();
                 break;
             case 91://[
-                System.out.println("loop");//test
-                //recursivity here
-                if(dataGrid.getCurrentValue() != 0) {
-                    LinkedList queue= new LinkedList();
-                    while (lookFor(93)!= -1) queue.add(Integer.valueOf(getCurrentChar()));
-                    BrainfuckInterpreter brainfuckInterpreter = new BrainfuckInterpreter(dataGrid,queue);
-                    while (dataGrid.getCurrentValue() != 0) {
-                        brainfuckInterpreter.reset();
-                    }
-                } else {
-                    while (lookFor(93)!= -1);
-                    nextChar();
-                }
+                LinkedList queue= new LinkedList();
+                while (lookFor(93)!= -1) queue.add(Integer.valueOf(getCurrentChar()));
+                BrainfuckInterpreter brainfuckInterpreter = new BrainfuckInterpreter(dataGrid,queue);
+                while (dataGrid.getCurrentValue() != 0) brainfuckInterpreter.reset();
                 break;
             case 93://]
-                System.out.println("Unexpected value");
-                break;
-            default:
-                System.out.println("Wtf is this > " + (char)c);
+                throw new UnexpectedCharacterException("Unexpected closing braket");
         }
     }
 
@@ -122,12 +109,12 @@ public class BrainfuckInterpreter
         return ch;
     }
 
-    public static void main( String[] args )
+    public static void main( String[] args ) 
     {
         DataGrid dataGrid = new DataGrid();
         LinkedList queue= new LinkedList();
         enqueue(args[0], queue);
         BrainfuckInterpreter brainfuckInterpreter = new BrainfuckInterpreter(dataGrid, queue);
-        brainfuckInterpreter.run();
-    }    
+        try{ brainfuckInterpreter.run();} catch(UnexpectedCharacterException e) { e.printStackTrace(); }
+    }
 }

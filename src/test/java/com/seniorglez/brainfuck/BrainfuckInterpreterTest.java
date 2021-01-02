@@ -16,10 +16,10 @@ public class BrainfuckInterpreterTest
 		DataGrid dataGrid = new DataGrid();
 		LinkedList queue= new LinkedList();
 		//BrainfuckInterpreter.enqueue("++++++++++++++++++++++++++++++++++++++++++++++++++[-.]", queue);//This should print 2
-		BrainfuckInterpreter.enqueue("++++[>++++++++++<-]>.", queue);//Should return (
+		BrainfuckInterpreter.enqueue(">+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.[-]>++++++++[<++++>-] <.>+++++++++++[<++++++++>-]<-.--------.+++.------.--------.[-]>++++++++[<++++>- ]<+.[-]++++++++++.", queue);//Should return Hello world!
 		//BrainfuckInterpreter.enqueue("++++++++++++++++++++++++++++++++++++++++++++++++++.", queue);//This should print 2
 		//BrainfuckInterpreter.enqueue("++++++++++[->+++++<].", queue);//This should print 2
-		//BrainfuckInterpreter.enqueue("[-]", queue);
+		BrainfuckInterpreter.enqueue("+++++[>+++++++++++<-]>.", queue);//Print 2
         BrainfuckInterpreter brainfuckInterpreter = new BrainfuckInterpreter(dataGrid, queue);
         brainfuckInterpreter.run();
 	}

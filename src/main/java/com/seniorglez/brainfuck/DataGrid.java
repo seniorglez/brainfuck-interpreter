@@ -1,5 +1,7 @@
 package com.seniorglez.brainfuck;
 
+import com.seniorglez.brainfuck.exceptions.UnsupportedValueException;
+
 /**
  * 
  *
