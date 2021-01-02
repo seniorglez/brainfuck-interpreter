@@ -21,13 +21,19 @@ This will generate an executable called "com.seniorglez.brainfuck.brainfuckinter
 
 ## Run it
 
-Right now you can only pass code as an argument.
+You can pass code as an argument:
 
 ```bash
     ./com.seniorglez.brainfuck.brainfuckinterpreter ">+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.[-]>++++++++[<++++>-] <.>+++++++++++[<++++++++>-]<-.--------.+++.------.--------.[-]>++++++++[<++++>- ]<+.[-]++++++++++."
 ```
 
 This will return: Hello world!
+
+Or read .bf and .b files:
+
+```bash
+    ./com.seniorglez.brainfuck.brainfuckinterpreter helloworld.bf
+```
 
 ## Contributing
 
