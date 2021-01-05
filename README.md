@@ -44,8 +44,6 @@ Feel free to fork it and made pull request if something can be improved.
 * [Maven](https://maven.apache.org/) - The build automation tool
 * [GraalVM](https://www.graalvm.org/) - The poliglot JVM
 
-## Contributing
-
 ## Authors
 
 * **Diego Dominguez**   <a href="https://twitter.com/DGlez1111" target="_blank">
