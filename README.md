@@ -36,7 +36,7 @@ The language have the following commands:
 <tr>
 <td style="text-align:center"><code>.</code>
 </td>
-<td>Output the byte at the data pointer.
+<td>Output the byte at the data pointer(as a char). 
 </td></tr>
 <tr>
 <td style="text-align:center"><code>,</code>
